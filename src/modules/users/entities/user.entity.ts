@@ -1,6 +1,7 @@
+import { Movie } from '@/modules/movies/entities/movie.entity';
 import { Exclude } from 'class-transformer';
 import { IsNotEmpty, IsString } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -25,4 +26,7 @@ export class User {
   @Exclude()
   @Column()
   password: string;
+
+  @OneToMany(() => Movie, (movie) => movie.user)
+  movies: Movie[];
 }

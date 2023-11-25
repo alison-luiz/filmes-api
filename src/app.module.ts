@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
+import { MoviesModule } from './modules/movies/movies.module';
 import { UsersModule } from './modules/users/users.module';
 import { DatabaseConfig } from './shared/database/database.config';
 
@@ -17,8 +18,9 @@ import { DatabaseConfig } from './shared/database/database.config';
         DatabaseConfig.createTypeOrmOptions(configService),
       inject: [ConfigService],
     }),
-    UsersModule,
     AuthModule,
+    UsersModule,
+    MoviesModule,
   ],
   controllers: [AppController],
   providers: [
