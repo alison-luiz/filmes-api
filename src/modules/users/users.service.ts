@@ -31,6 +31,7 @@ export class UsersService {
         id: 'ERROR_CREATE_USER',
         message: 'Error creating user',
         status: HttpStatus.INTERNAL_SERVER_ERROR,
+        error,
       });
     }
   }
@@ -45,6 +46,7 @@ export class UsersService {
         id: 'ERROR_FIND_USER',
         message: 'Error finding user',
         status: HttpStatus.INTERNAL_SERVER_ERROR,
+        error,
       });
     }
   }
@@ -59,6 +61,7 @@ export class UsersService {
         id: 'ERROR_FIND_USER',
         message: 'Error finding user',
         status: HttpStatus.INTERNAL_SERVER_ERROR,
+        error,
       });
     }
   }
@@ -75,6 +78,7 @@ export class UsersService {
         id: 'ERROR_UPDATE_USER',
         message: 'Error updating user',
         status: HttpStatus.INTERNAL_SERVER_ERROR,
+        error,
       });
     }
   }
