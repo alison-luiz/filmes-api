@@ -1,4 +1,5 @@
 import {
+  Body,
   ClassSerializerInterceptor,
   Controller,
   Post,
@@ -11,6 +12,7 @@ import { AuthService } from './auth.service';
 import { IsPublic } from './decorators/is-public.decorator';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthRequest } from './models/auth-request';
+import { LoginRequestBody } from './models/login-request-body';
 
 @ApiTags('auth')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -21,7 +23,10 @@ export class AuthController {
   @IsPublic()
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Request() req: AuthRequest) {
-    return this.authService.login(req.user);
+  async login(
+    @Request() req: AuthRequest,
+    @Body() loginRequestBody: LoginRequestBody,
+  ) {
+    return this.authService.login(req.user, loginRequestBody);
   }
 }

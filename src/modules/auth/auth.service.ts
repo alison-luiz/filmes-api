@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from '../users/entities/user.entity';
 import { UsersService } from '../users/users.service';
 import { UnauthorizedError } from './errors/unauthorized.error';
+import { LoginRequestBody } from './models/login-request-body';
 import { UserPayload } from './models/user-payload';
 import { UserToken } from './models/user-token';
 
@@ -14,7 +15,12 @@ export class AuthService {
     private readonly usersService: UsersService,
   ) {}
 
-  async login(user: User): Promise<UserToken> {
+  async login(
+    user: User,
+    loginRequestBody: LoginRequestBody,
+  ): Promise<UserToken> {
+    await this.validateUser(loginRequestBody.email, loginRequestBody.password);
+
     const payload: UserPayload = {
       sub: user.id,
       email: user.email,
