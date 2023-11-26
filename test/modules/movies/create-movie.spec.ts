@@ -1,10 +1,13 @@
 import { HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { CreateMovieDto } from '../../../src/modules/movies/dto/create-movie.dto';
 import { Movie } from '../../../src/modules/movies/entities/movie.entity';
 import { MoviesService } from '../../../src/modules/movies/movies.service';
-import { User } from '../../../src/modules/users/entities/user.entity';
 import { AppError } from '../../../src/shared/utils/appError.exception';
+import {
+  mockCreateMovie,
+  mockUser,
+  mockUserId,
+} from '../../mocks/mocks.helper';
 
 describe('MoviesService - create', () => {
   let service: MoviesService;
@@ -24,34 +27,9 @@ describe('MoviesService - create', () => {
   });
 
   it('should create a movie', async () => {
-    const userId = 'e4bc6fcc-2a3e-4778-8210-dfb1e49c37bb';
+    const userId = mockUserId;
 
-    const mockUser: User = {
-      id: userId,
-      first_name: 'Alison',
-      last_name: 'Silva',
-      email: 'alison_luiz@outlook.com.br',
-      password: 'senha123',
-      movies: [],
-    };
-
-    const createMovieDto: CreateMovieDto = {
-      title: 'Gente Grande',
-      description:
-        'Um filme de comédia sobre amigos de infância que se reúnem para um fim de semana.',
-      director: 'Dennis Dugan',
-      release_year: 2010,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler',
-        'Kevin James',
-        'Chris Rock',
-        'David Spade',
-        'Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 8,
-    };
+    const createMovieDto = mockCreateMovie;
 
     const createdMovie: Movie = {
       id: 1,
@@ -76,25 +54,9 @@ describe('MoviesService - create', () => {
   });
 
   it('should throw an error if an exception occurs', async () => {
-    const userId = 'e4bc6fcc-2a3e-4778-8210-dfb1e49c37bb';
+    const userId = mockUserId;
 
-    const createMovieDto: CreateMovieDto = {
-      title: 'Gente Grande',
-      description:
-        'Um filme de comédia sobre amigos de infância que se reúnem para um fim de semana.',
-      director: 'Dennis Dugan',
-      release_year: 2010,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler',
-        'Kevin James',
-        'Chris Rock',
-        'David Spade',
-        'Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 8,
-    };
+    const createMovieDto = mockCreateMovie;
 
     jest
       .spyOn(movieRepository, 'create')

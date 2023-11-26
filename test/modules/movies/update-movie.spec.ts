@@ -1,10 +1,13 @@
 import { HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { UpdateMovieDto } from '../../../src/modules/movies/dto/update-movie.dto';
 import { Movie } from '../../../src/modules/movies/entities/movie.entity';
 import { MoviesService } from '../../../src/modules/movies/movies.service';
-import { User } from '../../../src/modules/users/entities/user.entity';
 import { AppError } from '../../../src/shared/utils/appError.exception';
+import {
+  mockCreatedMovie,
+  mockUpdateMovie,
+  mockUserId,
+} from '../../mocks/mocks.helper';
 
 describe('MoviesService - update', () => {
   let service: MoviesService;
@@ -25,51 +28,12 @@ describe('MoviesService - update', () => {
   });
 
   it('should update a movie', async () => {
-    const userId = 'e4bc6fcc-2a3e-4778-8210-dfb1e49c37bb';
-
-    const mockUser: User = {
-      id: userId,
-      first_name: 'Alison',
-      last_name: 'Silva',
-      email: 'alison_luiz@outlook.com.br',
-      password: 'senha123',
-      movies: [],
-    };
-
+    const userId = mockUserId;
     const movieId = 1;
 
-    const updateMovieDto: UpdateMovieDto = {
-      title: 'Gente Grande 2',
-      description:
-        'A continuação da comédia sobre amigos de infância que enfrentam novas situações hilárias.',
-      director: 'Dennis Dugan',
-      release_year: 2013,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler", "Kevin James", "Chris Rock", "David Spade", "Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 5.5,
-    };
+    const updateMovieDto = mockUpdateMovie;
 
-    const existingMovie: Movie = {
-      id: movieId,
-      title: 'Gente Grande',
-      description:
-        'Um filme de comédia sobre amigos de infância que se reúnem para um fim de semana.',
-      director: 'Dennis Dugan',
-      release_year: 2010,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler", "Kevin James", "Chris Rock", "David Spade", "Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 6,
-      created_by_user_id: userId,
-      created_at: new Date(),
-      updated_at: new Date(),
-      user: mockUser,
-    };
+    const existingMovie = mockCreatedMovie;
 
     const updatedMovie: Movie = {
       ...existingMovie,
@@ -94,23 +58,11 @@ describe('MoviesService - update', () => {
   });
 
   it('should throw an error if movie is not found', async () => {
-    const userId = 'e4bc6fcc-2a3e-4778-8210-dfb1e49c37bb';
+    const userId = mockUserId;
 
     const movieId = 1;
 
-    const updateMovieDto: UpdateMovieDto = {
-      title: 'Gente Grande',
-      description:
-        'Um filme de comédia sobre amigos de infância que se reúnem para um fim de semana.',
-      director: 'Dennis Dugan',
-      release_year: 2010,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler", "Kevin James", "Chris Rock", "David Spade", "Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 6,
-    };
+    const updateMovieDto = mockUpdateMovie;
 
     movieRepository.findOne.mockResolvedValueOnce(null);
 
@@ -126,51 +78,13 @@ describe('MoviesService - update', () => {
   });
 
   it('should throw an error if an exception occurs', async () => {
-    const userId = 'e4bc6fcc-2a3e-4778-8210-dfb1e49c37bb';
-
-    const mockUser: User = {
-      id: userId,
-      first_name: 'Alison',
-      last_name: 'Silva',
-      email: 'alison_luiz@outlook.com.br',
-      password: 'senha123',
-      movies: [],
-    };
+    const userId = mockUserId;
 
     const movieId = 1;
 
-    const updateMovieDto: UpdateMovieDto = {
-      title: 'Gente Grande 2',
-      description:
-        'A continuação da comédia sobre amigos de infância que enfrentam novas situações hilárias.',
-      director: 'Dennis Dugan',
-      release_year: 2013,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler", "Kevin James", "Chris Rock", "David Spade", "Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 5.5,
-    };
+    const updateMovieDto = mockUpdateMovie;
 
-    const existingMovie: Movie = {
-      id: movieId,
-      title: 'Gente Grande',
-      description:
-        'Um filme de comédia sobre amigos de infância que se reúnem para um fim de semana.',
-      director: 'Dennis Dugan',
-      release_year: 2010,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler", "Kevin James", "Chris Rock", "David Spade", "Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 6,
-      created_by_user_id: userId,
-      created_at: new Date(),
-      updated_at: new Date(),
-      user: mockUser,
-    };
+    const existingMovie = mockCreatedMovie;
 
     movieRepository.findOne.mockResolvedValueOnce(existingMovie);
     movieRepository.merge.mockReturnValueOnce(updateMovieDto as Movie);

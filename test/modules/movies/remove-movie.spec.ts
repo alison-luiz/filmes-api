@@ -2,8 +2,8 @@ import { HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Movie } from '../../../src/modules/movies/entities/movie.entity';
 import { MoviesService } from '../../../src/modules/movies/movies.service';
-import { User } from '../../../src/modules/users/entities/user.entity';
 import { AppError } from '../../../src/shared/utils/appError.exception';
+import { mockCreatedMovie, mockUserId } from '../../mocks/mocks.helper';
 
 describe('MoviesService - remove', () => {
   let service: MoviesService;
@@ -23,43 +23,11 @@ describe('MoviesService - remove', () => {
   });
 
   it('should remove a movie', async () => {
-    const userId = 'e4bc6fcc-2a3e-4778-8210-dfb1e49c37bb';
-
-    const mockUser: User = {
-      id: userId,
-      first_name: 'Alison',
-      last_name: 'Silva',
-      email: 'alison_luiz@outlook.com.br',
-      password: 'senha123',
-      movies: [],
-    };
-
+    const userId = mockUserId;
     const movieId = 1;
+    const movie = mockCreatedMovie;
 
-    const mockMovie: Movie = {
-      id: movieId,
-      title: 'Gente Grande',
-      description:
-        'Um filme de comédia sobre amigos de infância que se reúnem para um fim de semana.',
-      director: 'Dennis Dugan',
-      release_year: 2010,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler',
-        'Kevin James',
-        'Chris Rock',
-        'David Spade',
-        'Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 8,
-      created_by_user_id: userId,
-      created_at: new Date(),
-      updated_at: new Date(),
-      user: mockUser,
-    };
-
-    movieRepository.findOne.mockResolvedValueOnce(mockMovie);
+    movieRepository.findOne.mockResolvedValueOnce(movie);
 
     await service.remove(userId, movieId);
 
@@ -70,7 +38,7 @@ describe('MoviesService - remove', () => {
   });
 
   it('should throw an error if the movie is not found', async () => {
-    const userId = 'e4bc6fcc-2a3e-4778-8210-dfb1e49c37bb';
+    const userId = mockUserId;
 
     const movieId = 1;
 
@@ -91,43 +59,11 @@ describe('MoviesService - remove', () => {
   });
 
   it('should throw an error if an exception occurs', async () => {
-    const userId = 'e4bc6fcc-2a3e-4778-8210-dfb1e49c37bb';
-
-    const mockUser: User = {
-      id: userId,
-      first_name: 'Alison',
-      last_name: 'Silva',
-      email: 'alison_luiz@outlook.com.br',
-      password: 'senha123',
-      movies: [],
-    };
-
+    const userId = mockUserId;
     const movieId = 1;
+    const movie = mockCreatedMovie;
 
-    const mockMovie: Movie = {
-      id: movieId,
-      title: 'Gente Grande',
-      description:
-        'Um filme de comédia sobre amigos de infância que se reúnem para um fim de semana.',
-      director: 'Dennis Dugan',
-      release_year: 2010,
-      genre: 'Comédia',
-      actors: [
-        'Adam Sandler',
-        'Kevin James',
-        'Chris Rock',
-        'David Spade',
-        'Rob Schneider',
-      ],
-      classification: 'PG-13',
-      rating: 8,
-      created_by_user_id: userId,
-      created_at: new Date(),
-      updated_at: new Date(),
-      user: mockUser,
-    };
-
-    movieRepository.findOne.mockResolvedValueOnce(mockMovie);
+    movieRepository.findOne.mockResolvedValueOnce(movie);
     movieRepository.delete.mockRejectedValueOnce(new Error('Test error'));
 
     await expect(service.remove(userId, movieId)).rejects.toThrowError(
