@@ -5,11 +5,12 @@ COPY . ./
 
 COPY ./tsconfig*.json ./
 COPY ./package.json ./
-COPY ./.env.example ./.env
 
 RUN yarn install
 
 COPY . ./
+
+RUN yarn build
 
 EXPOSE 3000
 
