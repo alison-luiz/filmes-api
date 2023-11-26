@@ -20,6 +20,12 @@ Teste MSK é um projeto para qualificar minhas habilidades de backend utilizando
 $ git clone https://github.com/alison-luiz/filmes-api.git
 ```
 
+#### Criar o arquivo do environment na pasta raiz do projeto
+```bash
+Copiar o arquivo .env.example para .env
+Preencher as informações JWT_SECRET e DATABASE_URL
+```
+
 #### Usar o gerenciador de pacotes [Yarn](https://yarnpkg.com/) para executar o backend em modo de desenvolvimento
 
 ```bash
