@@ -15,6 +15,16 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    const userExists = await this.findByEmail(createUserDto.email);
+
+    if (userExists) {
+      throw new AppError({
+        id: 'ERROR_USER_EMAIL_ALREADY_EXISTS',
+        message: 'User email already exists',
+        status: HttpStatus.BAD_REQUEST,
+      });
+    }
+
     try {
       const data = {
         ...createUserDto,
