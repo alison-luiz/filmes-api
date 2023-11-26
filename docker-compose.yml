@@ -1,11 +1,28 @@
 version: '3.8'
 
 services:
+  filmes:
+    container_name: "filmes"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    depends_on:
+      - db_filmes
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgres://filmes:filmes@db_filmes:5432/filmes"
+      
   db_filmes:
+    container_name: "db_filmes"
     image: "postgres:16.1-alpine"
+    restart: always
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: "filmes"
       POSTGRES_PASSWORD: "filmes"
       POSTGRES_DB: "filmes"
+
+  
