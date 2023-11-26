@@ -28,7 +28,7 @@ export class UsersService {
     try {
       const data = {
         ...createUserDto,
-        password: await bcrypt.hash(createUserDto.password, 10),
+        password: bcrypt.hashSync(createUserDto.password, 10),
       };
 
       const createdUser = await this.userRepository.save(
@@ -77,8 +77,20 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.findOne(id);
+
+    if (!user) {
+      throw new AppError({
+        id: 'ERROR_USER_NOT_FOUND',
+        message: 'User not found',
+        status: HttpStatus.NOT_FOUND,
+      });
+    }
+
     try {
-      const user = await this.findOne(id);
+      if (updateUserDto.password) {
+        updateUserDto.password = bcrypt.hashSync(updateUserDto.password, 10);
+      }
 
       const updateUser = this.userRepository.merge(user, updateUserDto);
 
