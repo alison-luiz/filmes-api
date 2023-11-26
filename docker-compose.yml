@@ -12,6 +12,7 @@ services:
     ports:
       - "3000:3000"
     environment:
+      JWT_SECRET: "Fx6hVj9x4SZ2fw5uZwz8KWDcTYy6uWC57vGGFYaDCNGNC3u79J"
       DATABASE_URL: "postgres://filmes:filmes@db_filmes:5432/filmes"
       
   db_filmes:
