@@ -9,7 +9,7 @@ import {
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { UserFromJwt } from '../auth/models/user-from-jwt';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -17,6 +17,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MoviesService } from './movies.service';
 
 @ApiTags('movies')
+@ApiBearerAuth()
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('movies')
 export class MoviesController {
