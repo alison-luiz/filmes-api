@@ -1,6 +1,6 @@
 ## Teste MKS
 
-Teste MSK é um projeto para qualificar minhas habilidades de backend utilizando o framework NestJS.
+Teste MKS é um projeto para qualificar minhas habilidades de backend utilizando o framework NestJS.
 
 ## Instalação
 
