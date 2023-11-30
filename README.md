@@ -53,7 +53,7 @@ $ docker compose up
 
 ```bash
 http://localhost:3000/docs # Para execução do projeto local
-https://filmes-api.onrender.com/docs # Para documentação do projeto em deploy
+https://filmes-api.up.railway.app/docs # Para documentação do projeto em deploy
 ```
 
 ## Testes
@@ -65,4 +65,4 @@ $ yarn test
 
 ## Build de Produção
 
-O projeto atual na sua versão de produção está sendo executado na plataforma [Render](https://render.com/) na URL `https://filmes-api.onrender.com` e os endpoints pode ser acessado na [documentação](https://filmes-api.onrender.com/docs)
+O projeto atual na sua versão de produção está sendo executado na plataforma [Render](https://render.com/) na URL `https://filmes-api.up.railway.app` e os endpoints pode ser acessado na [documentação](https://filmes-api.up.railway.app/docs)
