@@ -65,4 +65,4 @@ $ yarn test
 
 ## Build de Produção
 
-O projeto atual na sua versão de produção está sendo executado na plataforma [Render](https://render.com/) na URL `https://filmes-api.up.railway.app` e os endpoints pode ser acessado na [documentação](https://filmes-api.up.railway.app/docs)
+O projeto atual na sua versão de produção está sendo executado na plataforma [Railway](https://railway.app/) na URL `https://filmes-api.up.railway.app` e os endpoints pode ser acessado na [documentação](https://filmes-api.up.railway.app/docs)
