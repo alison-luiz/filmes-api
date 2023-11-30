@@ -18,9 +18,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Filmes API')
-    .setDescription('The MKS Test Movie Catalog API')
+    .setDescription('The Movie Catalog API')
     .setVersion('1.0')
-    .addTag('MKS')
+    .addTag('CRUD')
     .addBearerAuth()
     .build();
 
