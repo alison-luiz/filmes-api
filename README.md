@@ -1,6 +1,6 @@
-## Teste MKS
+## Filmes API
 
-Teste MKS é um projeto para qualificar minhas habilidades de backend utilizando o framework NestJS.
+Filmes API é um projeto para qualificar minhas habilidades de backend utilizando o framework NestJS.
 
 ## Instalação
 
@@ -66,13 +66,3 @@ $ yarn test
 ## Build de Produção
 
 O projeto atual na sua versão de produção está sendo executado na plataforma [Render](https://render.com/) na URL `https://filmes-api.onrender.com` e os endpoints pode ser acessado na [documentação](https://filmes-api.onrender.com/docs)
-
-## Experiência
-
- - TypeScript `+1 ano`
- - Nest.js `+1 ano`
- - TypeORM `+1 ano`
- - Swagger `Este projeto foi o primeiro contato`
- - Docker `+1 ano`
- - Redis `Nunca tive contato com Redis`
- - PostgreSQL `+1 ano`
